@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Story</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="create_account">Create Your Account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">Or</string>
+    <string name="login">Login</string>
+    <string name="silahkan_login">Please Login</string>
+    <string name="no_value_data_in_here">There nothing here</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="description">Enter the word description</string>
+    <string name="tambah_gambar">Add Story</string>
+    <string name="nama_anda">Username</string>
+    <string name="errorValid">must be at least 6 characters</string>
+    <string name="errorEmailValid">must be unique</string>
+    <string name="name_developer">Candra Julius Sinaga</string>
+    <string name="kosong">required</string>
+    <string name="daftar_story">Story List</string>
+    <string name="tanggal">Date Created</string>
+    <string name="bahasa">Language</string>
+    <string name="keluar">Sign Out</string>
+    <string name="pilih_gambar">Choose your picture</string>
+    <string name="foto_diisi">Photo is required</string>
+    <string name="camera_diizinkan">Camera features allowed</string>
+    <string name="gallery_diizinkan">Gallery Allowed</string>
+    <string name="detail_cerita">Story Details</string>
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="password_valid">Password is valid</string>
+</resources>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Cerita</string>
+    <string name="username">Nama</string>
+    <string name="password">Kata Sandi</string>
+    <string name="email">Surel</string>
+    <string name="create_account">Buat Akun Anda</string>
+    <string name="sign_up">Daftar</string>
+    <string name="or">Atau</string>
+    <string name="login">Masuk</string>
+    <string name="silahkan_login">Silahkan Anda Masuk</string>
+    <string name="no_value_data_in_here">Tidak ada apapun disini</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galleri</string>
+    <string name="description">Masukkan kata deskripsi</string>
+    <string name="tambah_gambar">Tambah Cerita</string>
+    <string name="nama_anda">Nama anda</string>
+    <string name="errorValid">minimal harus 6 karakter</string>
+    <string name="errorEmailValid">harus unik</string>
+    <string name="name_developer">Candra Julius Sinaga</string>
+    <string name="kosong">wajib diisi</string>
+    <string name="daftar_story">Daftar Story</string>
+    <string name="tanggal">Tanggal Dibuat</string>
+    <string name="bahasa">Bahasa</string>
+    <string name="keluar">Keluar</string>
+    <string name="pilih_gambar">Pilih gambar anda</string>
+    <string name="foto_diisi">Foto harus diisi</string>
+    <string name="camera_diizinkan">Fitur kamera diizinkan</string>
+    <string name="gallery_diizinkan">Galleri Diizinkan</string>
+    <string name="detail_cerita">Detail Cerita</string>
+    <string name="password_empty">Kata sandi tidak boleh kosong</string>
+    <string name="password_valid">Kata sandi benar</string>
+</resources>
