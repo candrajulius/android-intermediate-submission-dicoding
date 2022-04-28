@@ -10,31 +10,36 @@ import retrofit2.http.*
 interface ApiInterface {
 
     @FormUrlEncoded
-    @POST("register")
+    @POST(Contant.API_REGISTER)
     suspend fun registerUser(
-        @Field("name") name: String,
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Field(Contant.API_NAME) name: String,
+        @Field(Contant.API_EMAIL) email: String,
+        @Field(Contant.API_PASSWORD) password: String
     ): Response<RegisterResponse>
 
-    @GET("stories")
+    @GET(Contant.API_STORIES)
     suspend fun getAllStories(
         @Header(Contant.AUTHORIZATION) token: String,
+        @Query(Contant.API_PAGE) page: Int,
+        @Query(Contant.API_SIZE) size: Int,
+        @Query(Contant.API_LOCATION) location: Int? = null
     ): Response<AllStoryResponse>
 
     @Multipart
-    @POST("stories")
+    @POST(Contant.API_STORIES)
     suspend fun addNewStrories(
         @Header(Contant.AUTHORIZATION) token: String,
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part(Contant.API_DESCRIPTION) description: RequestBody,
+        @Part(Contant.API_LAT) lat: RequestBody?,
+        @Part(Contant.API_LON) lon: RequestBody?
     ): Response<AddNewStoryResponse>
 
     @FormUrlEncoded
-    @POST("login")
+    @POST(Contant.API_LOGIN)
     suspend fun loginUsername(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Field(Contant.API_EMAIL) email: String,
+        @Field(Contant.API_PASSWORD) password: String
     ): Response<LoginResponse>
 
 }

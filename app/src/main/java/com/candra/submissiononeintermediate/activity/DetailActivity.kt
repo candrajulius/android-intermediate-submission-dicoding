@@ -1,5 +1,6 @@
 package com.candra.submissiononeintermediate.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +39,9 @@ class DetailActivity: AppCompatActivity()
         return super.onOptionsItemSelected(item)
     }
 
+
+
+    @SuppressLint("SetTextI18n")
     private fun getDataFromAdapter(){
         intent.extras?.getParcelable<Story>(EXTRA_DATA)?.let {
             with(binding){
@@ -49,6 +53,7 @@ class DetailActivity: AppCompatActivity()
                 textUsername.text = it.name
                 textDate.text = it.createdAt.genereteDate
                 textDeskripsi.text = it.description
+                textLocation.text = "${it.lat},${it.lon}"
             }
         }
     }

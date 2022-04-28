@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             app:layout_constraintBottom_toTopOf="@id/linearButton"
@@ -64,7 +64,7 @@
             app:cardElevation="3dp"
             android:id="@+id/cardParent"
             android:background="@android:color/transparent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/linearButton"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@id/gambarAdd"
@@ -74,7 +74,7 @@
                 android:textColor="@android:color/black"
                 android:textStyle="normal"
                 android:drawablePadding="8dp"
-                android:textSize="12sp"
+                android:textSize="18sp"
                 android:hint="@string/description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -84,15 +84,33 @@
         </androidx.cardview.widget.CardView>
 
 
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Anda"
+            android:padding="8dp"
+            android:textSize="18sp"
+            app:layout_goneMarginTop="3dp"
+            android:drawablePadding="5dp"
+            android:layout_marginEnd="5dp"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@id/add_image"
+            app:layout_constraintTop_toBottomOf="@id/cardParent"
+            app:layout_constraintEnd_toEndOf="@id/cardParent"
+            app:layout_constraintStart_toStartOf="@id/cardParent"
+            android:id="@+id/location" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/progress_bar"
             android:visibility="gone"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/cardParent"
-            app:layout_constraintStart_toStartOf="@id/cardParent"
-            app:layout_constraintEnd_toEndOf="@id/gambarAdd" />
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:layout_constraintStart_toStartOf="@id/location"
+            app:layout_constraintEnd_toEndOf="@id/location" />
 
 
         <com.google.android.material.button.MaterialButton
@@ -102,10 +120,10 @@
             app:cornerRadius="20dp"
             android:id="@+id/add_image"
             android:backgroundTint="@color/coklat"
-            app:layout_constraintTop_toBottomOf="@id/cardParent"
+            app:layout_constraintTop_toBottomOf="@id/location"
             app:layout_constraintStart_toStartOf="@id/cardParent"
             app:layout_constraintEnd_toEndOf="@id/gambarAdd"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="20dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

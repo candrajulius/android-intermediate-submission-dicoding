@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
-import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -18,7 +18,7 @@ import com.candra.submissiononeintermediate.helper.Contant
 import com.candra.submissiononeintermediate.helper.genereteDate
 import com.candra.submissiononeintermediate.model.Story
 
-class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.ViewHolder>() {
+class ListStoryAdapter: PagingDataAdapter<Story,ListStoryAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListStoryAdapter.ViewHolder {
@@ -28,13 +28,12 @@ class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListStoryAdapter.ViewHolder, position: Int) {
-        val data = differ.currentList[position]
-        holder.bind(data)
+        val data = getItem(position)
+        data?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
 
-    class ViewHolder(private val binding: ItemListBinding): RecyclerView.ViewHolder(binding.root){
+   inner class ViewHolder(private val binding: ItemListBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(data: Story) {
             with(binding){
                 gambar.load(data.photoUrl){
@@ -46,6 +45,9 @@ class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.ViewHolder>() {
                 }
                 name.text = data.name
                 date.text = data.createdAt.genereteDate
+                location.text = buildString {
+                    append(data.lat).append("-").append(data.lon)
+                }
                 cvList.setOnClickListener {
                    val optionSelected: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                        itemView.context as Activity,
@@ -65,18 +67,13 @@ class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.ViewHolder>() {
 
     }
 
-    private val differ = AsyncListDiffer(this,object: DiffUtil.ItemCallback<Story>(){
-        override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
-           return oldItem.id == newItem.id
+    companion object{
+        val DIFF_CALLBACK = object:
+        DiffUtil.ItemCallback<Story>(){
+            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean = oldItem == newItem
+
+            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean = oldItem.id == newItem.id
+
         }
-
-        override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
-           return oldItem == newItem
-        }
-
-    })
-
-    fun temptDataAll(listData: List<Story>){
-        differ.submitList(listData)
     }
 }

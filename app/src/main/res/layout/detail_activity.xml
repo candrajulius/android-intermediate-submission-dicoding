@@ -71,6 +71,21 @@
             app:layout_constraintStart_toStartOf="@id/text_deskripsi"
             app:layout_constraintTop_toBottomOf="@id/text_deskripsi"/>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:id="@+id/text_location"
+            android:transitionName="date"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:text="@string/lokasi"
+            android:background="@drawable/background_edit_text"
+            app:layout_constraintEnd_toEndOf="@id/text_date"
+            app:layout_constraintStart_toStartOf="@id/text_date"
+            app:layout_constraintTop_toBottomOf="@id/text_date"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

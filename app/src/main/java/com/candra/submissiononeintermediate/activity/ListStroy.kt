@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.candra.submissiononeintermediate.R
@@ -17,9 +18,11 @@ import com.candra.submissiononeintermediate.adapter.ListStoryAdapter
 import com.candra.submissiononeintermediate.databinding.ListStoryActivityBinding
 import com.candra.submissiononeintermediate.helper.Help
 import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.paging.LoadingStateAdapter
 import com.candra.submissiononeintermediate.viewmodel.PostStoryViewModel
 import com.candra.submissiononeintermediate.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -43,6 +46,7 @@ class ListStroy: AppCompatActivity()
 
         setOnClickListener()
 
+
         readDataAll()
 
     }
@@ -52,43 +56,64 @@ class ListStroy: AppCompatActivity()
         addDataToRecyclerView()
         binding.apply {
            nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                if (scrollY < oldScrollY) binding.fabAdd.extend() else binding.fabAdd.shrink()
+                if (scrollY < oldScrollY){
+                    fabAdd.extend()
+                    fapMaps.extend()
+                } else {
+                    fabAdd.shrink()
+                    fapMaps.shrink()
+                }
             })
-            binding.fabAdd.setOnClickListener {
+            fabAdd.setOnClickListener {
                 startActivity(Intent(this@ListStroy,AddStory::class.java))
+            }
+            fapMaps.setOnClickListener {
+                startActivity(Intent(this@ListStroy,MapsActivity::class.java))
+                finish()
             }
         }
     }
 
     private fun addDataToRecyclerView(){
-       layoutManager1 =  LinearLayoutManager(this@ListStroy,LinearLayoutManager.VERTICAL,false)
-        adapterMain.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                super.onItemRangeInserted(positionStart, itemCount)
-                binding.rvListStory.smoothScrollToPosition(0)
+
+        adapterMain.apply {
+            stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    super.onItemRangeInserted(positionStart, itemCount)
+                    binding.rvListStory.smoothScrollToPosition(0)
+                }
+            })
+
+            lifecycleScope.launch {
+                adapterMain.loadStateFlow.collect {
+                    if (it.refresh is LoadState.Loading){
+                        showShimmerEffect()
+                    }else if (it.refresh is LoadState.Error){
+                        Help.showToast(this@ListStroy,getString(R.string.kesalahan))
+                    }else{
+                        hideShimmerEffect()
+                    }
+                }
             }
-        })
+        }
+
+        val footerAdapterLoading = adapterMain.withLoadStateFooter(
+            footer = LoadingStateAdapter{
+                adapterMain.retry()
+            }
+        )
+
+        layoutManager1 =  LinearLayoutManager(this@ListStroy,LinearLayoutManager.VERTICAL,false)
 
         binding.rvListStory.apply {
             layoutManager = layoutManager1
-            adapter = adapterMain
+            adapter = footerAdapterLoading
         }
     }
 
     private fun readDataAll(){
-        storyViewModel.storyMutableliveData.observe(this){
-            layoutManager1.scrollToPositionWithOffset(0,0)
-            adapterMain.temptDataAll(it)
-        }
 
-        storyViewModel.mutableListEmpty.observe(this){
-            binding.mtvNoData.visibility = if (it) View.VISIBLE else View.GONE
-            binding.rvListStory.visibility = if (it) View.GONE else View.VISIBLE
-        }
-
-        storyViewModel.loading.observe(this){
-            if (it) showShimmerEffect() else hideShimmerEffect()
-        }
 
         storyViewModel.errorMessage.observe(this){
             Help.showDialog(this@ListStroy,it)
@@ -101,10 +126,11 @@ class ListStroy: AppCompatActivity()
             }
 
             this.dataUser = data
+        }
 
-            lifecycleScope.launch {
-                data.token?.let { storyViewModel.getAllStories(it) }
-            }
+
+        storyViewModel.dataStory(this@ListStroy).observe(this){data ->
+            adapterMain.submitData(lifecycle,data)
         }
     }
 
@@ -142,6 +168,7 @@ class ListStroy: AppCompatActivity()
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onBackPressed() {
         super.onBackPressed()

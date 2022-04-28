@@ -34,15 +34,6 @@ object SettingTheme
         }
     }
 
-   suspend fun saveDataUser(context: Context,user: LoginUpUser) = context.dataStore.edit { preferences ->
-       preferences[ID] = user.id?: ""
-       preferences[PASSWORD] = user.password?: ""
-       preferences[EMAIL] = user.email?: ""
-       preferences[TOKEN] = user.token?: ""
-       preferences[LOGGIN] = user.isLogginIn?: false
-       preferences[NAME] = user.name?: ""
-    }
-
     suspend fun updateDataUser(context: Context,user: LoginUpUser) = context.dataStore.edit { preferences ->
         user.id?.let { preferences[ID] = it }
         user.password?.let { preferences[PASSWORD] = it }

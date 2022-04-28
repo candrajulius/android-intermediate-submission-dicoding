@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     app:cardCornerRadius="10dp"
     android:id="@+id/cv_list"
+    android:layout_margin="5dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -68,6 +69,22 @@
             android:padding="8dp"
             android:textStyle="bold"
             android:textSize="20sp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Anda"
+            android:padding="8dp"
+            android:id="@+id/location"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:background="@drawable/bg_material_text_view"
+            app:layout_constraintEnd_toEndOf="@id/date"
+            app:layout_constraintStart_toStartOf="@id/date"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

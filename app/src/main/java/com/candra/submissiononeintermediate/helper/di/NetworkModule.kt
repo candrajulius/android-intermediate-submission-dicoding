@@ -18,6 +18,7 @@ import javax.inject.Singleton
 object NetworkModule
 {
     @Provides
+    @Singleton
     fun providesOktHttpClient(): OkHttpClient{
         val loggingInterceptor = if (BuildConfig.DEBUG){
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -30,11 +31,13 @@ object NetworkModule
     }
 
     @Provides
+    @Singleton
     fun provideConverterFactory(): GsonConverterFactory{
         return GsonConverterFactory.create()
     }
 
     @Provides
+    @Singleton
     fun providesRetrofitInstance(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory

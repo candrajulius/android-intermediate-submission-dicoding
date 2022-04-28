@@ -39,7 +39,7 @@
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:layout_width="match_parent"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/shimmerEffect"
                 android:layout_height="match_parent">
 
@@ -64,7 +64,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rv_list_story"
-                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toTopOf="parent"
@@ -92,6 +93,20 @@
         app:icon="@drawable/ic_add"
         app:iconTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fapMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/buka_map"
+        android:textAllCaps="false"
+        android:textColor="?attr/colorOnPrimary"
+        app:icon="@drawable/ic_baseline_location_on_24"
+        app:iconTint="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toTopOf="@id/fabAdd"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

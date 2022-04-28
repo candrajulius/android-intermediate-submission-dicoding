@@ -20,6 +20,7 @@
     <string name="name_developer">Candra Julius Sinaga</string>
     <string name="kosong">required</string>
     <string name="daftar_story">Story List</string>
+    <string name="lokasi">Location</string>
     <string name="tanggal">Date Created</string>
     <string name="bahasa">Language</string>
     <string name="keluar">Sign Out</string>
@@ -30,4 +31,9 @@
     <string name="detail_cerita">Story Details</string>
     <string name="password_empty">Password cannot be empty</string>
     <string name="password_valid">Password is valid</string>
+    <string name="timeout">Time Out</string>
+    <string name="your_api_key">AIzaSyChv9WpEEC9qmn-oJjPby6CRwZGU8G6iXI</string>
+    <string name="lokas_not_found">Location not found</string>
+    <string name="buka_map">Open Map</string>
+    <string name="kesalahan">There is an error</string>
 </resources>

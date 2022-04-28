@@ -1,8 +1,11 @@
 package com.candra.submissiononeintermediate.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.graphics.BitmapFactory
+import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,6 +23,8 @@ import com.candra.submissiononeintermediate.helper.*
 import com.candra.submissiononeintermediate.helper.Help.showDialogPermissionDenied
 import com.candra.submissiononeintermediate.model.LoginUpUser
 import com.candra.submissiononeintermediate.viewmodel.PostStoryViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -33,9 +38,11 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.util.*
 
 @AndroidEntryPoint
 class AddStory: AppCompatActivity()
@@ -46,6 +53,8 @@ class AddStory: AppCompatActivity()
     private var getFile: File? = null
     private lateinit var loginUser: LoginUpUser
     private val storyViewModel: PostStoryViewModel by viewModels()
+    private var location: Location? = null
+    private lateinit var fusedLocation: FusedLocationProviderClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +66,10 @@ class AddStory: AppCompatActivity()
         Help.showToolbar(this@AddStory,supportActionBar,getString(R.string.tambah_gambar),2)
 
         setOnClik()
+
+        fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+
+        requestPermission()
 
     }
 
@@ -221,8 +234,16 @@ class AddStory: AppCompatActivity()
                     imageRequest
                 )
 
+                var lat: RequestBody? = null
+                var lon: RequestBody? = null
+
+                if (location != null){
+                    lat = location?.latitude.toString().toRequestBody("text/plain".toMediaType())
+                    lon = location?.longitude.toString().toRequestBody("text/plain".toMediaType())
+                }
+
                 lifecycleScope.launch {
-                    storyViewModel.postStoriesUser(loginUser.token?: "",imageData,deskripsi)
+                    storyViewModel.postStoriesUser(loginUser.token?: "",imageData,deskripsi,lat,lon)
                 }
 
             }else{
@@ -252,8 +273,52 @@ class AddStory: AppCompatActivity()
     }
 
     private fun toListStoryActivity(){
-        startActivity(Intent(this@AddStory,ListStroy::class.java))
         finish()
+    }
+
+    private fun requestPermission(){
+        Dexter.withContext(this@AddStory)
+            .withPermissions(android.Manifest.permission.ACCESS_FINE_LOCATION
+            ,android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            .withListener(object: MultiplePermissionsListener{
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+                    if (p0?.areAllPermissionsGranted() == true){
+                        accessLocation()
+                    }else{
+                       showDialogPermissionDenied(this@AddStory,getString(R.string.lokasi))
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<PermissionRequest>?,
+                    p1: PermissionToken?
+                ) {
+                    p1?.continuePermissionRequest()
+                }
+
+            }).onSameThread().check()
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private fun accessLocation(){
+        fusedLocation.lastLocation.addOnSuccessListener {
+            it.let {
+                setTextLocation(it)
+            }
+        }
+    }
+
+
+    private fun setTextLocation(it: Location){
+       Geocoder(this, Locale.getDefault()).apply {
+           getFromLocation(it.latitude,it.longitude,1).first().let { address ->
+               binding.location.text = buildString {
+                   append(address.locality).append(",")
+                   append(address.subAdminArea)
+               }
+           }
+       }
     }
 
     override fun onBackPressed() {

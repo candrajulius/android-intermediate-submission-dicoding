@@ -10,15 +10,23 @@
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/eye_disabled.xml" value="0.1295" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_add.xml" value="0.1295" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_baseline_description_24.xml" value="0.1295" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.136" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.136" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.136" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.136" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/person_pin_circle-48px.xml" value="0.136" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/drawable/person_pin_circle_48px.xml" value="0.136" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/add_story_activity.xml" value="0.22" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/add_story_activity.xml" value="0.33" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/data.xml" value="0.18426678067550234" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/detail_activity.xml" value="0.22" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/item_list.xml" value="0.25" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/item_list_placeholder.xml" value="0.22" />
-        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/list_story_activity.xml" value="0.1531083481349911" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/list_story_activity.xml" value="0.15747168432590428" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/login_activity.xml" value="0.25" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/maps_activity.xml" value="0.2" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/splash_screen_activity.xml" value="0.18" />
+        <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/layout/story_loading.xml" value="0.22" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/menu/menu.xml" value="0.18426678067550234" />
         <entry key="..\:/Android_Intermediate/SubmissionOneIntermediate/app/src/main/res/xml/file_path.xml" value="0.18426678067550234" />
       </map>
