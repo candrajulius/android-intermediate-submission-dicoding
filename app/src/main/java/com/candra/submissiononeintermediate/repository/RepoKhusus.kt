@@ -1,7 +1,7 @@
 package com.candra.submissiononeintermediate.repository
 
 import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.Contant
+import com.candra.submissiononeintermediate.helper.`object`.Contant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -13,6 +13,7 @@ class RepoKhusus @Inject constructor(
         khusus.getAllStories(Contant.BARER + token,page,size,location)
     }
 
-    suspend fun getStoryUserWithLocation(token: String,page: Int,size: Int,location: Int) = khusus.getAllStories(Contant.BARER + token,page,size,location)
+    suspend fun getStoryUserWithLocation(token: String,page: Int,size: Int,location: Int) = khusus.getAllStories(
+        Contant.BARER + token,page,size,location)
 
 }

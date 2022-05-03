@@ -6,6 +6,7 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
@@ -16,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.candra.submissiononeintermediate.R
 import com.candra.submissiononeintermediate.adapter.ListStoryAdapter
 import com.candra.submissiononeintermediate.databinding.ListStoryActivityBinding
-import com.candra.submissiononeintermediate.helper.Help
-import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.helper.`object`.Help
+import com.candra.submissiononeintermediate.model.local.LoginUpUser
 import com.candra.submissiononeintermediate.paging.LoadingStateAdapter
+import com.candra.submissiononeintermediate.room.entity.Story
 import com.candra.submissiononeintermediate.viewmodel.PostStoryViewModel
 import com.candra.submissiononeintermediate.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +37,7 @@ class ListStroy: AppCompatActivity()
     private val storyViewModel: PostStoryViewModel by viewModels()
     private lateinit var layoutManager1: LinearLayoutManager
     private lateinit var dataUser: LoginUpUser
+    private val currentStories = arrayListOf<Story>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,18 +84,25 @@ class ListStroy: AppCompatActivity()
             registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
                 override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                     super.onItemRangeInserted(positionStart, itemCount)
-                    binding.rvListStory.smoothScrollToPosition(0)
+                        binding.rvListStory.smoothScrollToPosition(0)
                 }
             })
 
             lifecycleScope.launch {
                 adapterMain.loadStateFlow.collect {
-                    if (it.refresh is LoadState.Loading){
-                        showShimmerEffect()
-                    }else if (it.refresh is LoadState.Error){
-                        Help.showToast(this@ListStroy,getString(R.string.kesalahan))
-                    }else{
-                        hideShimmerEffect()
+
+                    when (it.refresh) {
+                        is LoadState.Loading -> {
+                            userViewModel.isLoadingShow()
+                        }
+                        is LoadState.Error -> {
+                            userViewModel.showErrorMessage("Terjadi kesalahan")
+                        }
+                        is LoadState.NotLoading -> {
+                            currentStories.clear()
+                            currentStories.addAll(adapterMain.snapshot().items)
+                            userViewModel.isLoadingGone()
+                        }
                     }
                 }
             }
@@ -128,6 +138,17 @@ class ListStroy: AppCompatActivity()
             this.dataUser = data
         }
 
+        userViewModel.loading.observe(this){
+            if (it) showShimmerEffect() else hideShimmerEffect()
+        }
+
+        userViewModel.messageError.observe(this){
+            Toast.makeText(this@ListStroy,it,Toast.LENGTH_SHORT).show()
+        }
+
+        storyViewModel.errorMessage.observe(this){
+            Toast.makeText(this@ListStroy,it,Toast.LENGTH_SHORT).show()
+        }
 
         storyViewModel.dataStory(this@ListStroy).observe(this){data ->
             adapterMain.submitData(lifecycle,data)

@@ -11,7 +11,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.candra.submissiononeintermediate.R
-import com.candra.submissiononeintermediate.helper.Help
+import com.candra.submissiononeintermediate.helper.`object`.Help
 
 class EmailView : AppCompatEditText,View.OnTouchListener
 {

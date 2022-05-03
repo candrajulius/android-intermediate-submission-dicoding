@@ -1,10 +1,11 @@
-package com.candra.submissiononeintermediate.model
+package com.candra.submissiononeintermediate.room.entity
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.candra.submissiononeintermediate.helper.Contant
+import com.candra.submissiononeintermediate.helper.`object`.Contant
+import com.candra.submissiononeintermediate.model.response.StoryResponse
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

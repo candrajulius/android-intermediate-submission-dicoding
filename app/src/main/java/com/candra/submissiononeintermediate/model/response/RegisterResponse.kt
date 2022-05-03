@@ -1,9 +1,9 @@
-package com.candra.submissiononeintermediate.model
+package com.candra.submissiononeintermediate.model.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class AddNewStoryResponse(
+data class RegisterResponse(
     @SerializedName("error")
     val error: Boolean,
     @SerializedName("message")

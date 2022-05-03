@@ -2,7 +2,7 @@ package com.candra.submissiononeintermediate.helper.di
 
 import com.candra.submissiononeintermediate.BuildConfig
 import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.Contant
+import com.candra.submissiononeintermediate.helper.`object`.Contant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

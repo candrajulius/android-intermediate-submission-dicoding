@@ -1,8 +1,9 @@
 package com.candra.submissiononeintermediate.activity
 
-import android.annotation.SuppressLint
+import android.Manifest
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.location.Location
@@ -11,17 +12,20 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.candra.submissiononeintermediate.R
 import com.candra.submissiononeintermediate.databinding.AddStoryActivityBinding
 import com.candra.submissiononeintermediate.helper.*
-import com.candra.submissiononeintermediate.helper.Help.showDialogPermissionDenied
-import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.helper.`object`.Help
+import com.candra.submissiononeintermediate.helper.`object`.Help.showDialogPermissionDenied
+import com.candra.submissiononeintermediate.model.local.LoginUpUser
 import com.candra.submissiononeintermediate.viewmodel.PostStoryViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -278,8 +282,8 @@ class AddStory: AppCompatActivity()
 
     private fun requestPermission(){
         Dexter.withContext(this@AddStory)
-            .withPermissions(android.Manifest.permission.ACCESS_FINE_LOCATION
-            ,android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION
+            ,Manifest.permission.ACCESS_COARSE_LOCATION)
             .withListener(object: MultiplePermissionsListener{
                 override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
                     if (p0?.areAllPermissionsGranted() == true){
@@ -300,25 +304,39 @@ class AddStory: AppCompatActivity()
     }
 
 
-    @SuppressLint("MissingPermission")
     private fun accessLocation(){
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return Toast.makeText(this@AddStory,"Permission dizinkan",Toast.LENGTH_SHORT).show()
+        }
         fusedLocation.lastLocation.addOnSuccessListener {
-            it.let {
-                setTextLocation(it)
+            it.let { location ->
+                showLocationFromLatAndLon(location)
             }
         }
     }
 
 
+    private fun showLocationFromLatAndLon(it: Location){
+        binding.location.text = convertLatLngToAddress(it.latitude,it.longitude,this@AddStory)
+    }
+
     private fun setTextLocation(it: Location){
-       Geocoder(this, Locale.getDefault()).apply {
-           getFromLocation(it.latitude,it.longitude,1).first().let { address ->
-               binding.location.text = buildString {
-                   append(address.locality).append(",")
-                   append(address.subAdminArea)
-               }
-           }
-       }
+        Geocoder(this, Locale.getDefault()).apply {
+            getFromLocation(it.latitude, it.longitude, 1).first().let { address ->
+                binding.location.text = buildString {
+                    append(address.subLocality).append(",").append(address.locality).append(",")
+                    append(address.subAdminArea).append(",").append(address.adminArea)
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {

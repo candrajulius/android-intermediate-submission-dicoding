@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.candra.submissiononeintermediate.model.Story
 import com.candra.submissiononeintermediate.repository.StoryRepositoryUser
 import com.candra.submissiononeintermediate.repository.UserRepository
+import com.candra.submissiononeintermediate.room.entity.Story
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody

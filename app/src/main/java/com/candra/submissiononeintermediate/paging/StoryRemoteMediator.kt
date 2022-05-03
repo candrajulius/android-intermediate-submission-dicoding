@@ -5,13 +5,12 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.Contant
-import com.candra.submissiononeintermediate.model.Story
-import com.candra.submissiononeintermediate.model.toGenereteListStory
+import com.candra.submissiononeintermediate.helper.`object`.Contant
 import com.candra.submissiononeintermediate.repository.RepoKhusus
-import com.candra.submissiononeintermediate.room.RemoteKeys
-import com.candra.submissiononeintermediate.room.StoryDatabase
+import com.candra.submissiononeintermediate.room.entity.RemoteKeys
+import com.candra.submissiononeintermediate.room.database.StoryDatabase
+import com.candra.submissiononeintermediate.room.entity.Story
+import com.candra.submissiononeintermediate.room.entity.toGenereteListStory
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -23,7 +22,7 @@ class StoryRemoteMediator @Inject constructor(
     private val token: String,
     private val repoKhusus: RepoKhusus,
     private val storyDatabase: StoryDatabase,
-): RemoteMediator<Int,Story>()
+): RemoteMediator<Int, Story>()
 {
 
     override suspend fun initialize(): InitializeAction {

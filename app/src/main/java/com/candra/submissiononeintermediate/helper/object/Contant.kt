@@ -1,4 +1,4 @@
-package com.candra.submissiononeintermediate.helper
+package com.candra.submissiononeintermediate.helper.`object`
 
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -16,7 +16,6 @@ object Contant {
     val NAME = stringPreferencesKey("name")
     const val TAG = "Add Story"
     const val BARER = "Bearer "
-    const val DATABSE_NAME = "story_database"
     const val API_EMAIL = "email"
     const val API_NAME = "name"
     const val API_PASSWORD = "password"
@@ -32,7 +31,8 @@ object Contant {
     const val STORY_TABLE = "story_table"
     const val DATABASE_NAME = "story_database"
     const val INITIAL_PAGE_INDEX = 1
-
     const val EXTRA_DATA = "data"
+    const val EXTRA_MAP = "extra_map"
+    const val POSITION = "position"
 
 }

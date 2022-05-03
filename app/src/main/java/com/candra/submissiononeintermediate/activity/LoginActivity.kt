@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.candra.submissiononeintermediate.R
 import com.candra.submissiononeintermediate.databinding.LoginActivityBinding
-import com.candra.submissiononeintermediate.helper.Animation
-import com.candra.submissiononeintermediate.helper.Help
+import com.candra.submissiononeintermediate.helper.`object`.Animation
+import com.candra.submissiononeintermediate.helper.`object`.Help
 import com.candra.submissiononeintermediate.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -61,13 +61,6 @@ class LoginActivity: AppCompatActivity()
 
         userViewModel.success.observe(this){ success ->
             if (success) setSuccessFully() else setFailedData()
-        }
-
-        userViewModel.getDataUser(this@LoginActivity).observe(this){ loginUser ->
-            if (loginUser.isLogginIn == true){
-                startActivity(Intent(this@LoginActivity,ListStroy::class.java))
-                finish()
-            }
         }
     }
 

@@ -3,10 +3,10 @@ package com.candra.submissiononeintermediate.repository
 import androidx.lifecycle.LiveData
 import androidx.paging.*
 import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.Contant
-import com.candra.submissiononeintermediate.model.Story
+import com.candra.submissiononeintermediate.helper.`object`.Contant
 import com.candra.submissiononeintermediate.paging.StoryRemoteMediator
-import com.candra.submissiononeintermediate.room.StoryDatabase
+import com.candra.submissiononeintermediate.room.database.StoryDatabase
+import com.candra.submissiononeintermediate.room.entity.Story
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject

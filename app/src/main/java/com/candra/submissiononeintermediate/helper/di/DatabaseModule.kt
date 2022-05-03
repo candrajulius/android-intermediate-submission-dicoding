@@ -2,8 +2,8 @@ package com.candra.submissiononeintermediate.helper.di
 
 import android.content.Context
 import androidx.room.Room
-import com.candra.submissiononeintermediate.helper.Contant.DATABASE_NAME
-import com.candra.submissiononeintermediate.room.StoryDatabase
+import com.candra.submissiononeintermediate.helper.`object`.Contant.DATABASE_NAME
+import com.candra.submissiononeintermediate.room.database.StoryDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.candra.submissiononeintermediate.helper
+package com.candra.submissiononeintermediate.helper.`object`
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
