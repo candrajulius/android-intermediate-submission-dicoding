@@ -2,8 +2,8 @@ package com.candra.submissiononeintermediate.repository
 
 import android.content.Context
 import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.SettingTheme
-import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.helper.`object`.SettingTheme
+import com.candra.submissiononeintermediate.model.local.LoginUpUser
 import javax.inject.Inject
 
 class UserRepository@Inject constructor(
@@ -14,7 +14,9 @@ class UserRepository@Inject constructor(
 
   suspend fun loginUser(email: String,password: String) = retrofit.loginUsername(email,password)
 
-  suspend fun logoutUser(context: Context) = SettingTheme.updateDataUser(context,LoginUpUser(token = null,isLogginIn = false))
+  suspend fun logoutUser(context: Context) = SettingTheme.updateDataUser(context,
+      LoginUpUser(token = null,isLogginIn = false)
+  )
 
   fun getDataUser(context: Context) = SettingTheme.getDataUser(context = context)
 

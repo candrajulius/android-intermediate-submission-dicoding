@@ -1,4 +1,4 @@
-package com.candra.submissiononeintermediate.model
+package com.candra.submissiononeintermediate.model.response
 
 
 import com.google.gson.annotations.SerializedName

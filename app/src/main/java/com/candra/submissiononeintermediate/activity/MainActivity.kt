@@ -11,8 +11,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.candra.submissiononeintermediate.R
 import com.candra.submissiononeintermediate.databinding.ActivityMainBinding
-import com.candra.submissiononeintermediate.helper.Animation
-import com.candra.submissiononeintermediate.helper.Help
+import com.candra.submissiononeintermediate.helper.`object`.Animation
+import com.candra.submissiononeintermediate.helper.`object`.Help
 import com.candra.submissiononeintermediate.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

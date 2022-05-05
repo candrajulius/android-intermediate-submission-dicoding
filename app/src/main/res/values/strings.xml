@@ -10,13 +10,16 @@
     <string name="silahkan_login">Silahkan Anda Masuk</string>
     <string name="no_value_data_in_here">Tidak ada apapun disini</string>
     <string name="camera">Kamera</string>
+    <string name="lokasi">Lokasi</string>
     <string name="gallery">Galleri</string>
+    <string name="buka_map">Buka Map</string>
     <string name="description">Masukkan kata deskripsi</string>
     <string name="tambah_gambar">Tambah Cerita</string>
     <string name="nama_anda">Nama anda</string>
     <string name="errorValid">minimal harus 6 karakter</string>
     <string name="errorEmailValid">harus unik</string>
     <string name="name_developer">Candra Julius Sinaga</string>
+    <string name="by_developer">Oleh Candra Julius Sinaga</string>
     <string name="kosong">wajib diisi</string>
     <string name="daftar_story">Daftar Story</string>
     <string name="tanggal">Tanggal Dibuat</string>
@@ -29,4 +32,11 @@
     <string name="detail_cerita">Detail Cerita</string>
     <string name="password_empty">Kata sandi tidak boleh kosong</string>
     <string name="password_valid">Kata sandi benar</string>
+    <string name="map_key" translatable="false">AIzaSyChv9WpEEC9qmn-oJjPby6CRwZGU8G6iXI</string>
+    <string name="timeout">Waktu Habis</string>
+    <string name="your_api_key">AIzaSyChv9WpEEC9qmn-oJjPby6CRwZGU8G6iXI</string>
+    <string name="lokas_not_found">Lokasi tidak ditemukan</string>
+    <string name="kesalahan">Terjadi kesalahan</string>
+    <string name="lihat_detail">Lihat Detail</string>
+    <string name="pengaturan">Pengaturan</string>
 </resources>

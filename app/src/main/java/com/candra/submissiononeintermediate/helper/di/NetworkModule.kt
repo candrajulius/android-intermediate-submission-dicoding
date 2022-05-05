@@ -2,7 +2,7 @@ package com.candra.submissiononeintermediate.helper.di
 
 import com.candra.submissiononeintermediate.BuildConfig
 import com.candra.submissiononeintermediate.api.ApiInterface
-import com.candra.submissiononeintermediate.helper.Contant
+import com.candra.submissiononeintermediate.helper.`object`.Contant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +18,7 @@ import javax.inject.Singleton
 object NetworkModule
 {
     @Provides
+    @Singleton
     fun providesOktHttpClient(): OkHttpClient{
         val loggingInterceptor = if (BuildConfig.DEBUG){
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -30,11 +31,13 @@ object NetworkModule
     }
 
     @Provides
+    @Singleton
     fun provideConverterFactory(): GsonConverterFactory{
         return GsonConverterFactory.create()
     }
 
     @Provides
+    @Singleton
     fun providesRetrofitInstance(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory

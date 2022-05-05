@@ -1,17 +1,17 @@
-package com.candra.submissiononeintermediate.helper
+package com.candra.submissiononeintermediate.helper.`object`
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import com.candra.submissiononeintermediate.helper.Contant.EMAIL
-import com.candra.submissiononeintermediate.helper.Contant.ID
-import com.candra.submissiononeintermediate.helper.Contant.LOGGIN
-import com.candra.submissiononeintermediate.helper.Contant.NAME
-import com.candra.submissiononeintermediate.helper.Contant.PASSWORD
-import com.candra.submissiononeintermediate.helper.Contant.TOKEN
-import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.helper.`object`.Contant.EMAIL
+import com.candra.submissiononeintermediate.helper.`object`.Contant.ID
+import com.candra.submissiononeintermediate.helper.`object`.Contant.LOGGIN
+import com.candra.submissiononeintermediate.helper.`object`.Contant.NAME
+import com.candra.submissiononeintermediate.helper.`object`.Contant.PASSWORD
+import com.candra.submissiononeintermediate.helper.`object`.Contant.TOKEN
+import com.candra.submissiononeintermediate.model.local.LoginUpUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -21,7 +21,7 @@ object SettingTheme
 
 
     // Ambil data user yang telah diketik oleh user
-    fun getDataUser(context: Context): Flow<LoginUpUser>{
+  fun getDataUser(context: Context): Flow<LoginUpUser>{
         return context.dataStore.data.map { preferences ->
             LoginUpUser(
                 id = preferences[ID],
@@ -32,15 +32,6 @@ object SettingTheme
                 name = preferences[NAME]
             )
         }
-    }
-
-   suspend fun saveDataUser(context: Context,user: LoginUpUser) = context.dataStore.edit { preferences ->
-       preferences[ID] = user.id?: ""
-       preferences[PASSWORD] = user.password?: ""
-       preferences[EMAIL] = user.email?: ""
-       preferences[TOKEN] = user.token?: ""
-       preferences[LOGGIN] = user.isLogginIn?: false
-       preferences[NAME] = user.name?: ""
     }
 
     suspend fun updateDataUser(context: Context,user: LoginUpUser) = context.dataStore.edit { preferences ->

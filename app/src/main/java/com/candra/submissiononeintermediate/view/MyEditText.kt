@@ -8,12 +8,12 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.candra.submissiononeintermediate.R
-import com.candra.submissiononeintermediate.helper.Help
 
 class MyEditText : AppCompatEditText,View.OnTouchListener
 {
@@ -60,7 +60,7 @@ class MyEditText : AppCompatEditText,View.OnTouchListener
                     textLowerCase.length < 6  -> showError("Password ${resources.getString(R.string.errorValid)}")
                     textLowerCase.isEmpty() && textLowerCase.isBlank() -> showError(context.getString(
                                             R.string.password_empty))
-                    else -> Help.showToast(context,context.getString(R.string.password_valid))
+                    else -> Log.d("Succes", "onTextChanged: Success")
                 }
             }
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/error_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/timeout"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@id/error_message"
+        app:layout_constraintEnd_toEndOf="@id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/error_message"
+        android:layout_marginTop="5dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="100dp"
+        app:cornerRadius="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Retry"
+        android:textAllCaps="false"
+        android:id="@+id/btn_retry"/>
+
+
+</LinearLayout>

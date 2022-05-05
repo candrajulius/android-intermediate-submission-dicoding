@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     app:cardCornerRadius="10dp"
     android:id="@+id/cv_list"
+    android:clickable="true"
+    android:layout_margin="5dp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,7 +72,23 @@
             android:textStyle="bold"
             android:textSize="20sp"/>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Anda"
+            android:padding="8dp"
+            android:id="@+id/location"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:background="@drawable/bg_material_text_view"
+            app:layout_constraintEnd_toEndOf="@id/date"
+            app:layout_constraintStart_toStartOf="@id/date"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

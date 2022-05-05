@@ -2,13 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/bahasa"
-        android:title="@string/bahasa"
-        app:showAsAction="never"
-        />
+    <item
+        android:title="@string/pengaturan"
+        android:icon="@drawable/ic_baseline_settings_24"
+        app:showAsAction="ifRoom">
 
-    <item android:id="@+id/logout"
-        app:showAsAction="never"
-        android:title="@string/keluar"/>
+    <menu>
+
+        <item android:id="@+id/bahasa"
+            android:title="@string/bahasa"
+            android:icon="@drawable/ic_baseline_language_24"
+            app:showAsAction="never"
+            />
+
+        <item android:id="@+id/logout"
+            app:showAsAction="never"
+            android:icon="@drawable/ic_baseline_power_settings_new_24"
+            android:title="@string/keluar"/>
+
+    </menu>
+
+
+    </item>
+
 
 </menu>

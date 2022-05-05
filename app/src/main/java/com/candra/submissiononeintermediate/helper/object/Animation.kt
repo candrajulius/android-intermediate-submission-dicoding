@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 
-package com.candra.submissiononeintermediate.helper
+package com.candra.submissiononeintermediate.helper.`object`
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

@@ -1,4 +1,4 @@
-package com.candra.submissiononeintermediate.helper
+package com.candra.submissiononeintermediate.helper.`object`
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -61,7 +61,7 @@ object Help {
         androidx.appcompat.app.AlertDialog.Builder(context)
             .setMessage("Aplikasi ini membutuhkan fitur perizinan $message anda.. " +
                     "Jika fitur ini tidak anda aktifkan. Anda tidak bisa menggunakan fitur ini.." +
-                    "Silahkan pergi ke Settin anda")
+                    "Silahkan pergi ke Setting anda")
             .setTitle("Peringatan")
             .setIcon(R.mipmap.ic_launcher_round)
             .setPositiveButton("Pergi ke Setting"){_,_ ->

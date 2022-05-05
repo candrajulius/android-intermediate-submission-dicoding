@@ -21,13 +21,14 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="0dp"
         android:id="@+id/textView"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/gambar_developer"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="15sp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

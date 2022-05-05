@@ -2,8 +2,8 @@ package com.candra.submissiononeintermediate.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.candra.submissiononeintermediate.helper.SettingTheme
-import com.candra.submissiononeintermediate.model.LoginUpUser
+import com.candra.submissiononeintermediate.helper.`object`.SettingTheme
+import com.candra.submissiononeintermediate.model.local.LoginUpUser
 import com.candra.submissiononeintermediate.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -51,6 +51,19 @@ class UserViewModel @Inject constructor(
             _messageError.value= e.message.toString()
             _succes.value = false
         }
+    }
+
+    fun isLoadingShow(){
+        _loading.value = true
+    }
+
+    fun isLoadingGone(){
+        _loading.value = false
+    }
+
+    fun showErrorMessage(it: String){
+        _loading.value = false
+        _messageError.value = it
     }
 
    suspend fun loginAccount(context: Context,email: String,password: String) = viewModelScope.launch {

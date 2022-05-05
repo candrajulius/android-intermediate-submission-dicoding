@@ -1,4 +1,4 @@
-package com.candra.submissiononeintermediate.model
+package com.candra.submissiononeintermediate.model.local
 
 data class LoginUpUser(
     val id: String? = null,
