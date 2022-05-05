@@ -147,7 +147,8 @@ class MapsActivity : AppCompatActivity(),OnMapReadyCallback{
             googleMap.isMyLocationEnabled = true
             fusedLocation.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
-                    googleMap.isMyLocationEnabled = true
+                    val latLng = LatLng(location.latitude, location.longitude)
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f))
                 }else{
                     Help.showDialogPermissionDenied(this@MapsActivity,getString(R.string.lokasi))
                 }
